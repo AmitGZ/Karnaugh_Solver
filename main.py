@@ -2,7 +2,7 @@ import karnaugh
 
 
 def main():
-    output = karnaugh.solve([19, 25, 30], ['first', 'second', 'third', 'fourth', 'fifth'])
+    output = karnaugh.solve([1, 5], ['first', 'second', 'third', 'fourth', 'fifth'])
     print(output)
 
 

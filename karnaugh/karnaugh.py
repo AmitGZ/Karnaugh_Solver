@@ -97,13 +97,16 @@ def get_minterms_from_chart(chart):
 
 def solve(minterms, var_list=[]):
     if len(minterms) == 0:
-        return ''
+        raise Exception("Insufficient minterm count")
+
     var_count = len(bin(max(minterms))) - 2  # Default var count
-    if len(var_list) < var_count:
-        print("Insufficient variable count using " + str(var_count) + " instead")
+
+    if len(var_list) == 0:  # Default variable (Capital letters)
         var_list = list(map(chr, range(65, 65 + var_count)))
-    else:
+    elif len(var_list) >= var_count:    # Predefined variables array
         var_count = len(var_list)
+    else:
+        raise Exception("Insufficient variable count")
 
     # Setting the minterms array to binary form
     for i in range(len(minterms)):
