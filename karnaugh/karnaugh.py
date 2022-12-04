@@ -104,10 +104,11 @@ def convert_to_string(minterms, var_list):
         output += '('
         for bit_idx in range(len(minterm)):
             if minterm[bit_idx] == '1':
-                output += '(' + var_list[bit_idx] + ')' + and_symbol
+                output +=  var_list[bit_idx] + and_symbol
             elif minterm[bit_idx] == '0':
-                output += '(' + not_symbol + var_list[bit_idx] + ')' + and_symbol
-        output = output[:-len(and_symbol)]
+                output += not_symbol + var_list[bit_idx] + and_symbol
+        if and_symbol == output[-len(and_symbol):]:
+            output = output[:-len(and_symbol)]  # Removing last "and" symbol
         output += ')'
         if minterm != minterms[-1]:
             output += or_symbol

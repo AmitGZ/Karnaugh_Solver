@@ -2,7 +2,7 @@ import karnaugh
 
 
 def main():
-    output = karnaugh.solve([1, 5, 7, 9, 19], ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'])
+    output = karnaugh.solve([3, 7, 11, 12, 15, 27], ['V', 'W', 'X', 'Y', 'Z'])
     print(output)
 
 
