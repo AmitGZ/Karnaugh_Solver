@@ -10,6 +10,9 @@ the program will output capital alphabel by default but can also receive any inp
 >>> karnaugh.solve([3, 7, 11, 12, 15])
 ((A) && (B) && (!C) && (!D)) || ((C) && (D))
 
+>>> karnaugh.solve([3, 7, 11, 12, 15], ['A', 'B', 'C', 'D', 'E'])
+((!A)) && (((B) && (C) && (!D) && (!E)) || ((D) && (E)))
+
 >>> karnaugh.solve([3, 7, 11, 12, 15, 27], ['a', 'b', 'c', 'd', 'e'])
 ((!a) && (b) && (c) && (!d) && (!e)) || ((b) && (!c) && (d) && (e)) || ((!a) && (d) && (e))
 
