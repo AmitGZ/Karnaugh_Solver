@@ -128,7 +128,7 @@ for i in range(len(chart)):
 for idx in reversed(range(len(redundant_indexes))):
     del minterms[redundant_indexes[idx]]
 
-# Printing to screen
+# Printing output to screen
 output = ''
 for minterm in minterms:
     output += '('
