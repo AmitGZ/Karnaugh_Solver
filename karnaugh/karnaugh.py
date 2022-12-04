@@ -1,6 +1,9 @@
 __all__ = ['solve']
 
 similar_char = 'X'
+not_symbol = '!'
+and_symbol = ' && '
+or_symbol = ' || '
 
 
 # Iterating over all different terms and finding the ones that differ by one bit
@@ -101,12 +104,13 @@ def convert_to_string(minterms, var_list):
         output += '('
         for bit_idx in range(len(minterm)):
             if minterm[bit_idx] == '1':
-                output += '(' + var_list[bit_idx] + ')'
+                output += '(' + var_list[bit_idx] + ')' + and_symbol
             elif minterm[bit_idx] == '0':
-                output += '(!' + var_list[bit_idx] + ')'
+                output += '(' + not_symbol + var_list[bit_idx] + ')' + and_symbol
+        output = output[:-len(and_symbol)]
         output += ')'
         if minterm != minterms[-1]:
-            output += ' || '
+            output += or_symbol
     return output
 
 
@@ -176,6 +180,6 @@ def solve(minterms, var_list=[]):
 
     # Multiplying back by common multiples
     if multiples != '()':
-        output = multiples + ' && (' + output + ')'
+        output = multiples + and_symbol + '(' + output + ')'
 
     return output
