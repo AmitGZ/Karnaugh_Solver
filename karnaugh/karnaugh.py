@@ -175,7 +175,7 @@ def solve(minterms, var_list=[]):
     output = convert_to_string(minterms, var_list)
 
     # Multiplying back by common multiples
-    if multiples != '':
+    if multiples != '()':
         output = multiples + ' && (' + output + ')'
 
     return output
