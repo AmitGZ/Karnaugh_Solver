@@ -95,6 +95,38 @@ def get_minterms_from_chart(chart):
     return all_minterms
 
 
+def convert_to_string(minterms, var_list):
+    output = ''
+    for minterm in minterms:
+        output += '('
+        for bit_idx in range(len(minterm)):
+            if minterm[bit_idx] == '1':
+                output += '(' + var_list[bit_idx] + ')'
+            elif minterm[bit_idx] == '0':
+                output += '(!' + var_list[bit_idx] + ')'
+        output += ')'
+        if minterm != minterms[-1]:
+            output += ' || '
+    return output
+
+
+# Removing common multiples (AB || BC) => B (A || C)
+def check_common_multiples(minterms, var_list):
+    common = [similar_char] * len(minterms[0])
+    if len(minterms) > 1:
+        for bit in range(len(minterms[0])):
+            for term in range(1, len(minterms)):
+                if minterms[0][bit] != minterms[term][bit] or minterms[term][bit] == similar_char:
+                    break
+                elif term == len(minterms) - 1:
+                    common[bit] = minterms[term][bit]
+                    for k in range(len(minterms)):
+                        minterms[k][bit] = similar_char
+
+    common = convert_to_string([common], var_list)
+    return common
+
+
 def solve(minterms, var_list=[]):
     if len(minterms) == 0:
         raise Exception("Insufficient minterm count")
@@ -103,7 +135,7 @@ def solve(minterms, var_list=[]):
 
     if len(var_list) == 0:  # Default variable (Capital letters)
         var_list = list(map(chr, range(65, 65 + var_count)))
-    elif len(var_list) >= var_count:    # Predefined variables array
+    elif len(var_list) >= var_count:  # Predefined variables array
         var_count = len(var_list)
     else:
         raise Exception("Insufficient variable count")
@@ -136,17 +168,14 @@ def solve(minterms, var_list=[]):
     for idx in reversed(range(len(redundant_indexes))):
         del minterms[redundant_indexes[idx]]
 
-    # Printing output to screen
-    output = ''
-    for minterm in minterms:
-        output += '('
-        for bit_idx in range(len(minterm)):
-            if minterm[bit_idx] == '1':
-                output += '(' + var_list[bit_idx] + ')'
-            elif minterm[bit_idx] == '0':
-                output += '(!' + var_list[bit_idx] + ')'
-        output += ')'
-        if minterm != minterms[-1]:
-            output += ' | '
+    # Removing common multiples (AB || BC) => B (A || C)
+    multiples = check_common_multiples(minterms, var_list)
+
+    # Getting output
+    output = convert_to_string(minterms, var_list)
+
+    # Multiplying back by common multiples
+    if multiples != '':
+        output = multiples + ' && (' + output + ')'
 
     return output
