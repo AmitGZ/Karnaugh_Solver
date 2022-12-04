@@ -7,7 +7,7 @@ the program will output capital alphabel by default but can also receive any inp
 ```python
 >>> import karnaugh
 
->>> karnaugh.solve([3, 7, 11, 12, 15], ['A', 'B', 'C', 'D', 'E', 'F'])
+>>> karnaugh.solve([3, 7, 11, 12, 15])
 ((A) && (B) && (!C) && (!D)) || ((C) && (D))
 
 >>> karnaugh.solve([3, 7, 11, 12, 15, 27], ['a', 'b', 'c', 'd', 'e'])
