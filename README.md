@@ -1,4 +1,4 @@
-# Karnaugh_Solver
+# Karnaugh Map Solver
 Karnaugh map solver
 
 This program receives the minterms and an unrestricted number of variables, and outputs the computed logical expression.\
