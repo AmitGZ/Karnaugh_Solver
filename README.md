@@ -7,12 +7,12 @@ the program will output capital alphabel by default but can also receive any inp
 >>> import karnaugh
 
 >>> karnaugh.solve([3, 7, 11, 12, 15])
-((A) && (B) && (!C) && (!D)) || ((C) && (D))
+(A && B && !C && !D) || (C && D)
 
 >>> karnaugh.solve([3, 7, 11, 12, 15], ['A', 'B', 'C', 'D', 'E'])
-((!A)) && (((B) && (C) && (!D) && (!E)) || ((D) && (E)))
+(!A) && ((B && C && !D && !E) || (D && E))
 
 >>> karnaugh.solve([3, 7, 11, 12, 15, 27], ['V', 'W', 'X', 'Y', 'Z'])
-((!V) && (W) && (X) && (!Y) && (!Z)) || ((W) && (!X) && (Y) && (Z)) || ((!V) && (Y) && (Z))
+(!V && W && X && !Y && !Z) || (W && !X && Y && Z) || (!V && Y && Z)
 
 ```
