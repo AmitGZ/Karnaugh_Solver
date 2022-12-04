@@ -4,6 +4,7 @@ similar_char = 'X'
 not_symbol = '!'
 and_symbol = ' && '
 or_symbol = ' || '
+parentheses_variables = True
 
 
 # Iterating over all different terms and finding the ones that differ by one bit
@@ -103,10 +104,12 @@ def convert_to_string(minterms, var_list):
     for minterm in minterms:
         output += '('
         for bit_idx in range(len(minterm)):
-            if minterm[bit_idx] == '1':
-                output +=  var_list[bit_idx] + and_symbol
-            elif minterm[bit_idx] == '0':
-                output += not_symbol + var_list[bit_idx] + and_symbol
+            if minterm[bit_idx] != similar_char:
+                output += '(' if parentheses_variables else ''
+                output += not_symbol if minterm[bit_idx] == '0' else ''
+                output += var_list[bit_idx]
+                output += ')' if parentheses_variables else ''
+                output += and_symbol
         if and_symbol == output[-len(and_symbol):]:
             output = output[:-len(and_symbol)]  # Removing last "and" symbol
         output += ')'
