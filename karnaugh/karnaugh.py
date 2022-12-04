@@ -96,6 +96,8 @@ def get_minterms_from_chart(chart):
 
 
 def solve(minterms, var_list=[]):
+    if len(minterms) == 0:
+        return ''
     var_count = len(bin(max(minterms))) - 2  # Default var count
     if len(var_list) < var_count:
         print("Insufficient variable count using " + str(var_count) + " instead")
