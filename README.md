@@ -9,8 +9,8 @@ the program will output capital alphabel by default but can also receive any inp
 >>> karnaugh.solve([3, 7, 11, 12, 15])
 (A && B && !C && !D) || (C && D)
 ```
-
-the program will output capital alphabel by default but can also receive any input names.
+\
+the program will output capital alphabet by default but can also receive any input names.
 ```python
 >>> karnaugh.set_style(not_symbol='not ', and_symbol=' and ', or_symbol=' or ', paranthesize_variables=False)
 >>> karnaugh.solve([3, 7, 11, 12, 15, 27], ['V', 'W', 'X', 'Y', 'Z'])
