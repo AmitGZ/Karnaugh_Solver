@@ -1,6 +1,6 @@
 # Karnaugh Map Solver
 
-This program receives the minterms and an unrestricted number of variables, and outputs the computed logical expression.\
+This program receives the minterms and an unrestricted number of variables, and outputs the computed logical expression.
 
 ```python
 >>> import karnaugh
