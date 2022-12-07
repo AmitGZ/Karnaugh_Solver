@@ -16,8 +16,11 @@ the program will output !,&&,|| as default logical operators but this can be cha
 (A And B And Not C And Not D) Or (C And D)
 ```
 \
-the program will output capital alphabet by default but can also receive any input names.
+the program will output capital alphabet by default but can also receive any input names, and more inputs than necessary.
 ```python
->>> karnaugh.solve([3, 7, 11, 12, 15], ['V', 'W', 'X', 'Y', 'Z'])
+>>> karnaugh.solve([3, 7, 11, 12, 15], ['V', 'W', 'X', 'Y'])
 ((V) && (W) && (!X) && (!Y)) || ((X) && (Y))
+
+>>> karnaugh.solve([3, 7, 11, 12, 15], ['V', 'W', 'X', 'Y', 'Z'])
+((!V)) && (((W) && (X) && (!Y) && (!Z)) || ((Y) && (Z)))
 ```
