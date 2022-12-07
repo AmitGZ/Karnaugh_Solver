@@ -4,7 +4,7 @@ This program receives the minterms and an unrestricted number of variables, and 
 the program will output capital alphabel by default but can also receive any input names.
 
 ```python
->> > import Karnaugh
+>> > import karnaugh
 
 >> > Karnaugh.solve([3, 7, 11, 12, 15])
 (A & & B & & !C & & !D) | | (C & & D)
