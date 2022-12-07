@@ -6,7 +6,7 @@ This program receives the minterms and an unrestricted number of variables, and 
 >>> import karnaugh
 
 >>> karnaugh.solve([3, 7, 11, 12, 15])
-(A && B && !C && !D) || (C && D)
+((A) && (B) && (!C) && (!D)) || ((C) && (D))
 ```
 \
 the program will use !,&&,|| as default logical operators, but this can be changed using the set_style method
