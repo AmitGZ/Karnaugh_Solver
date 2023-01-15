@@ -167,7 +167,11 @@ def solve(minterms, var_list=[]):
     # Calculating all redundant rows by removing one each time
     redundant_indexes = []
     for i in range(len(chart)):
-        if sorted(_get_minterms_from_chart(chart[:i] + chart[i + 1:])) == all_minterms:
+        tmp_chart = []
+        for k in range(len(chart)):
+            if (k != i) and (k not in redundant_indexes):
+                 tmp_chart.append(chart[k])
+        if sorted(_get_minterms_from_chart(tmp_chart)) == all_minterms:
             redundant_indexes.append(i)
 
     # Removing redundant terms
